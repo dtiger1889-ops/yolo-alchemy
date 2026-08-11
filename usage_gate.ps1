@@ -1,7 +1,9 @@
-# usage_gate.ps1 -- weekly-usage gate for the yolo-sprint scheduled task.
+# usage_gate.ps1 -- weekly-usage gate for the yolo-alchemy scheduled task.
+# PowerShell, but not Windows-only: runs anywhere `pwsh` does (macOS/Linux
+# included), and at ~40 lines it ports trivially to your shell of choice.
 #
 # Queries the UNDOCUMENTED (community-standard) Claude oauth/usage endpoint and
-# decides whether tonight's speculative sprint may run. Undocumented means it can
+# decides whether tonight's speculative run may fire. Undocumented means it can
 # change without notice -- which is why the gate fails SAFE: any error means SKIP,
 # never a blind run.
 #
@@ -14,7 +16,7 @@
 # 2. The CURVE. Sun 40 / Mon 60 / Tue 70 here came from auditing the source
 #    fleet's own six weeks of session transcripts (by the reset-anchored week,
 #    ~55% was typically spent by Sunday night, ~76% by Monday, ~83% by Tuesday --
-#    thresholds sit ~15 points below the curve so the sprint only fires on genuine
+#    thresholds sit ~15 points below the curve so the run only fires on genuine
 #    surplus). Derive yours the same way or start conservative and tune.
 #
 # TOKEN: reads the OAuth token Claude Code stores in ~/.claude/.credentials.json.
@@ -38,7 +40,7 @@ $thresholds = @{
 # unusually light weeks. A skipped night costs one API call and sends nothing.
 
 try {
-    $credPath = Join-Path $env:USERPROFILE ".claude\.credentials.json"
+    $credPath = Join-Path (Join-Path $HOME ".claude") ".credentials.json"
     $cred = Get-Content $credPath -Raw -ErrorAction Stop | ConvertFrom-Json
     $tok = $cred.claudeAiOauth.accessToken
     if (-not $tok) { Write-Output "VERDICT=SKIP UTIL=? REASON=no-token"; exit 0 }
@@ -52,7 +54,7 @@ try {
     $dow = [int](Get-Date).DayOfWeek.value__   # 0=Sun .. 6=Sat
 
     if (-not $thresholds.ContainsKey($dow)) {
-        Write-Output "VERDICT=SKIP UTIL=$util REASON=not-a-sprint-night"
+        Write-Output "VERDICT=SKIP UTIL=$util REASON=not-a-run-night"
         exit 0
     }
     $t = $thresholds[$dow]
