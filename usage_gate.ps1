@@ -40,6 +40,8 @@ $thresholds = @{
 # unusually light weeks. A skipped night costs one API call and sends nothing.
 
 try {
+    # The token in this file can be days stale (a headless run never refreshes it); a 401
+    # here is expected and non-fatal.
     $credPath = Join-Path (Join-Path $HOME ".claude") ".credentials.json"
     $cred = Get-Content $credPath -Raw -ErrorAction Stop | ConvertFrom-Json
     $tok = $cred.claudeAiOauth.accessToken
