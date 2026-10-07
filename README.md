@@ -1,5 +1,7 @@
 # yolo-alchemy
 
+![Illustrated usage-gate examples with invented utilization values showing when research runs and when it skips](assets/example-output.png)
+
 Transmute expiring AI quota into cross-domain gold. An overnight scheduled agent run that **burns surplus weekly quota on speculative cross-domain research** paired against your real projects — and only fires when a utilization gate proves the quota would otherwise go unused.
 
 The loop, nightly:
