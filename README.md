@@ -16,7 +16,7 @@ Its first live run found a real, measurable pricing bug in the target project.
 
 The gate is PowerShell but not Windows-only — it runs anywhere [`pwsh`](https://github.com/PowerShell/PowerShell) does, and at ~40 lines it ports trivially to your shell of choice. Two things in it are personal to the source fleet (documented in the script headers): the **reset anchor** (re-key the thresholds to your own weekly reset time) and the **threshold curve** (derive from your own typical spend, or start conservative). The gate reads the OAuth token your agent CLI already stores locally; nothing is committed.
 
-Extracted from a live personal automation fleet; placeholders like `<WORKSPACE>` mark where your values go. Companion tasks from the same fleet: [scheduled-tasks-toolbox](https://github.com/dtiger1889-ops/scheduled-tasks-toolbox).
+Extracted from a live personal automation fleet; placeholders like `<WORKSPACE>` mark where your values go. The fleet's other scheduled tasks are not published; nothing here needs them.
 
 ## License
 
