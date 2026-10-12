@@ -7,8 +7,8 @@ Transmute expiring AI quota into cross-domain gold. Weekly usage you haven't spe
 What a run does:
 
 1. Picks one of your projects and reads its goals and open problems.
-2. Researches one genuinely unrelated field (biology, logistics, urban planning and so on), extracts *mechanisms* (how that field solves its problems), and forces 2–3 pairings onto the project's open problems, prototyping the best one if it fits in an hour.
-3. Leaves a morning brief on disk, one JSON line in an append-only research ledger (so a month of runs stays analyzable in one read), and a short notification if your session has a way to send one.
+2. Researches one unrelated field (biology, logistics, urban planning and so on), extracts *mechanisms* (how that field solves its problems), and proposes supported pairings with the project's open problems, optionally prototyping the best one within the run's time budget.
+3. Leaves a morning brief on disk, one JSON line in an append-only research ledger (so a month of runs stays analyzable in one read), and a short notification if you configured and authorized a delivery channel.
 
 Hard rules baked into the spec: never write inside the target project, never touch git, read project data read-only, stop and write the brief on any rate-limit error. The run's own session doubles as the warmest place to say "do it": adoption lifts the unattended-run restrictions and hands the work to the project's normal rules.
 
