@@ -20,11 +20,11 @@ As a plugin: **Mackforge Yolo Alchemy** in the [mackforge-skills](https://github
 
 By hand: copy [`SKILL.md`](SKILL.md) into your agent's skills folder as `yolo-alchemy/SKILL.md`.
 
-Then schedule it for the evening before your weekly reset, started in the folder that holds your projects, with the prompt `/yolo-alchemy`. The schedule is the budget control.
+Then schedule it for the evening before your weekly reset, started in the folder that holds your projects, with the prompt `/yolo-alchemy`.
 
 ## Why there is no usage check
 
-Earlier versions shipped a gate script that read the account's usage through an undocumented endpoint and skipped nights with no surplus. It used the login token Claude Code caches on disk, and that token goes stale for scheduled runs: a run with no terminal attached never refreshes it, so it can sit expired for hours or days. The gate failed safe, which meant it silently skipped real nights whenever the token was old. It also needed a credential from your machine and a script runtime, both things a stranger's setup may not have. Scheduling the run for the evening before the reset does the same job with neither.
+Earlier versions shipped a gate script that read the account's usage through an undocumented endpoint and skipped nights with no surplus. It used the login token Claude Code caches on disk, and that token goes stale for scheduled runs: a run with no terminal attached never refreshes it, so it can sit expired for hours or days. The gate failed safe, which meant it silently skipped real nights whenever the token was old. It also needed a credential from your machine and a script runtime, both things a stranger's setup may not have. This version does not check usage at all. Scheduling the run for the evening before your reset aims it at usage that is about to expire. In a heavy week it still spends usage you may want, so skip that night.
 
 ## License
 

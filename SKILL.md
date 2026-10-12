@@ -30,9 +30,9 @@ Read these from the scheduled task's prompt or the user's own instructions file
 ## Budget rules (read before Step 1)
 
 This run exists to spend surplus; it must never create a shortage.
-- The schedule is the budget control: it should fire on the evening before the user's
-  weekly reset, when unspent usage is about to expire. Nothing in this skill reads the
-  account's usage.
+- Nothing in this skill checks the account's usage. Scheduling it for the evening before
+  the user's weekly reset aims it at usage that is about to expire. In a heavy week it
+  still spends usage the user may want, so the user skips that night.
 - On ANY rate-limit or usage-limit error, stop the current step and jump to Step 4 with
   whatever exists.
 - When a stop time is set, leave enough room to write the brief before it, and scope
@@ -63,7 +63,7 @@ design, materials science, urban planning, and so on. Vary it from earlier runs.
   after: the field, each source URL, and the mechanisms extracted. If the run dies or
   hits a limit here, that file is still the night's yield.
 
-Tonight's run folder is `<runs folder>/<YYYY-MM-DD>_<project>/`.
+Tonight's run folder is `<runs folder>/<YYYY-MM-DD-HHMM>_<project>/`, using the run's start time.
 
 ## Step 3 -- pair and maybe prototype (30-60 minutes)
 
